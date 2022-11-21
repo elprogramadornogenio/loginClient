@@ -1,0 +1,41 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar>
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon fontIcon="menu"></mat-icon>
+            </button>
+        </mat-toolbar>
+    </mat-sidenav>
+
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon fontIcon="menu"></mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <button routerLink="/dashboard" mat-icon-button>
+            <mat-icon>home</mat-icon>
+        </button>
+        <img *ngIf="usuario!= null" class="imagen" [src]="usuario.imagen" [alt]="usuario.nombre"
+            [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+
+            <button type="button" routerLink="./editar" mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Perfil de Usuario</span>
+            </button>
+            <button type="button" routerLink="./newPassword" mat-menu-item>
+                <mat-icon>password</mat-icon>
+                <span>Cambiar Contraseña</span>
+            </button>
+            <button type="button" mat-menu-item (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>

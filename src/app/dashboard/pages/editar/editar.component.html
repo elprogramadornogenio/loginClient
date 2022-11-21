@@ -1,0 +1,47 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="40px">
+    <form fxFlex="50" fxLayout="column" *ngIf="miFormulario!=null" autocomplete="off" [formGroup]="miFormulario"
+        (ngSubmit)="editar()">
+        <h1 fxLayoutAlign="center">Editar Usuario</h1>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Apellido</mat-label>
+                <input matInput type="text" formControlName="apellido">
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <input matInput type="text" formControlName="usuario">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email">
+        </mat-form-field>
+        <div fxLayout>
+            <button type="submit" mat-raised-button color="primary">
+                <mat-icon>edit</mat-icon> Actualizar
+            </button>
+        </div>
+        <h1 fxLayoutAlign="center">Foto de Perfil</h1>
+        <mat-form-field>
+            <mat-label>Foto de Perfil</mat-label>
+            <ngx-mat-file-input [formControl]="fileControl" accept="image/*">
+            </ngx-mat-file-input>
+        </mat-form-field>
+        <div fxLayout>
+            <button type="button" mat-raised-button color="accent" (click)="subirFoto()">
+                <mat-icon>photo</mat-icon> Actualizar Foto
+            </button>
+            <div class="spacer"></div>
+            <button routerLink="/dashboard" type="button" mat-raised-button color="warn">
+                <mat-icon>cancel</mat-icon> Cancelar
+            </button>
+        </div>
+    </form>
+    <div fxFlex="50" fxLayoutAlign="center">
+        <img fxFlex="50" *ngIf="usuario!=null" [src]="usuario.imagen" [alt]="usuario.nombre">
+    </div>
+</div>
